@@ -30,7 +30,7 @@ const App: () => React$Node = () => {
           style={styles.scrollView}>
           <View style={styles.body}>
             <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Core</Text>
+              <Text style={styles.sectionTitle}>Frontend</Text>
             </View>
           </View>
         </ScrollView>
