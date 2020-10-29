@@ -1,13 +1,16 @@
 import React from 'react';
-import {View, Text, Button} from 'react-native';
+import {Button, View, Text} from 'react-native';
+import {createStackNavigator} from '@react-navigation/stack';
 
-const Frontend = ({navigation}) => {
+const Stack = createStackNavigator();
+
+const MicroFrontendHomeScreen = ({navigation}) => {
     return (
         <>
             <View>
-                <Text>Micro Frontend Content</Text>
+                <Text>This is a MicroFrontend Home Screen</Text>
                 <Button
-                    title="Micro Frontend Child Page"
+                    title="Go to MicroFrontend Child Screen"
                     onPress={() => navigation.navigate('FrontendChild')}
                 />
             </View>
@@ -15,27 +18,30 @@ const Frontend = ({navigation}) => {
     );
 };
 
-const FrontendChildScreen = () => {
+const MicroFrontendChildScreen = () => {
     return (
         <>
             <View>
-                <Text>Frontend Content</Text>
+                <Text>This is a MicroFrontend Child Screen</Text>
             </View>
         </>
     );
 };
 
-const Routes = [
-    {
-        name: 'Micro Frontend Home',
-        route: 'Frontend',
-        component: Frontend,
-    },
-    {
-        name: 'Micro Frontend Child',
-        route: 'FrontendChild',
-        component: FrontendChildScreen,
-    },
-];
+const Frontend = () => {
+    return (
+        <Stack.Navigator initialRoute="FrontendHome">
+            <Stack.Screen name="FrontendHome" component={MicroFrontendHomeScreen} />
+            <Stack.Screen
+                name="FrontendChild"
+                component={MicroFrontendChildScreen}
+            />
+        </Stack.Navigator>
+    );
+};
 
-export default Routes;
+export default {
+    name: 'MicroFrontend',
+    route: 'FrontendHome',
+    component: Frontend,
+};
